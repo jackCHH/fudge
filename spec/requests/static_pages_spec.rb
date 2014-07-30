@@ -4,6 +4,7 @@ describe "StaticPages" do
 
 	#the subject of the follow tests are within this page
 	subject {page}
+	let(:base_title) {"College Fudge -"}
 
 	describe "Home Page" do
 
@@ -11,7 +12,7 @@ describe "StaticPages" do
 		before {visit root_path}
 
 		it {should have_content("College Fudge")}
-		it {should have_title("College Fudge - Welcome")}
+		it {should have_title("#{base_title} Welcome")}
 	end
 
 	describe "About page" do
@@ -19,7 +20,7 @@ describe "StaticPages" do
 		before {visit about_path}
 
 		it {should have_content("About")}
-		it {should have_title("College Fudge - About")}
+		it {should have_title("#{base_title} About")}
 	end
 
 	describe "Contact page" do
@@ -27,7 +28,7 @@ describe "StaticPages" do
 		before {visit contact_path}
 
 		it {should have_content("Contact")}
-		it {should have_title("College Fudge - Contact")}
+		it {should have_title("#{base_title} Contact")}
 	end
 
 	describe "FAQ page" do
@@ -35,7 +36,7 @@ describe "StaticPages" do
 		before {visit faq_path}
 
 		it {should have_content("FAQ")}
-		it {should have_title("College Fudge - FAQ")}
+		it {should have_title("#{base_title} FAQ")}
 	end
 
 end

@@ -7,8 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+	<%= render "layouts/header" %>
+	<div class = "container">
+		<!---center the content using the grid system + text-center property-->
+		<div class = "row">
+			<div class = "col-mid-8 col-mid-offset-2">
+				<div class = "text-center">
+					<%= yield %>
+				</div>
+			</div>
+		</div>
+		<%= render "layouts/footer" %>
+	</div>
 
 </body>
 </html>
