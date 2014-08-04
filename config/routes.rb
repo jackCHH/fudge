@@ -1,6 +1,7 @@
 Fudge::Application.routes.draw do
 
-  get "users/new"
+  #allows the users controller to implement RESTful implementation
+  resources :users
 
   root "static_pages#home"
 

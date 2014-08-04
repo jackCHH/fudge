@@ -1,0 +1,5 @@
+<!---After implementing the resources :users in config, we need to manually create this page-->
+
+<!---show the user's name in the title page-->
+<% provide(:title, @user.name)%>
+<h1><%= @user.name%> ----- <%= @user.email %></h1>
