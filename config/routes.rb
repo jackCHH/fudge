@@ -2,13 +2,17 @@ Fudge::Application.routes.draw do
 
   #allows the users controller to implement RESTful implementation
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   root "static_pages#home"
 
-  match '/about',    to: 'static_pages#about',    via: 'get'
-  match '/signup',   to: 'users#new', via: 'get'
-  match '/faq',    to: 'static_pages#faq',    via: 'get'
-  match '/contact',    to: 'static_pages#contact',    via: 'get'
+  match '/about',     to: 'static_pages#about',     via: 'get'
+  match '/signup',    to: 'users#new',              via: 'get'
+  match '/faq',       to: 'static_pages#faq',       via: 'get'
+  match '/contact',   to: 'static_pages#contact',   via: 'get'
+  #The session controller only has the new and destroy action, which is reflected in the resouces above
+  match '/signin',    to: 'sessions#new',           via:'get'
+  match '/signout',   to: 'sessions#destroy',       via:'delete'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

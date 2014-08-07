@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 	#ensures all email are lower case before saving
 	before_save {self.email = email.downcase}
 
+	# create a cookie token before creating any users
+	before_create :create_remember_token
+
 	#ensures that the name is not blank and has a max of 50 characters
 	validates :name, presence: true, length: {maximum: 50}
 
@@ -13,4 +16,18 @@ class User < ActiveRecord::Base
 
 	#password must have at least six characters
 	validates :password, length: {minimum: 6}
+
+	def User.new_remember_token
+    	SecureRandom.urlsafe_base64
+  	end
+
+  	def User.digest(token)
+    	Digest::SHA1.hexdigest(token.to_s)
+  	end
+
+  	private
+
+    	def create_remember_token
+      		self.remember_token = User.digest(User.new_remember_token)
+    	end
 end

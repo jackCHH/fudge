@@ -15,6 +15,8 @@ describe User do
 	it {should respond_to(:password)}
 	it {should respond_to(:password_confirmation)}
 	it {should respond_to(:authenticate)}
+	# store the sign in session within a cookie
+	it {should respond_to(:remember_token)}
 
 	# verifying that @user is initially valid
 	it {should be_valid}
@@ -115,5 +117,12 @@ describe User do
 			it {should_not eq user_for_invalid_password}
 			specify {expect(user_for_invalid_password).to be_false}
 		end
+	end
+
+	#remember the user token
+	describe "remember token" do
+		before {@user.save}
+		# equivalent to "it { expect(@user.remember_token).not_to be_blank }"
+		its(:remember_token) {should_not be_blank}
 	end
 end
