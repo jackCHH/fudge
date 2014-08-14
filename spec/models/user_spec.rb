@@ -15,11 +15,25 @@ describe User do
 	it {should respond_to(:password)}
 	it {should respond_to(:password_confirmation)}
 	it {should respond_to(:authenticate)}
+	it {should respond_to(:admin)}
 	# store the sign in session within a cookie
 	it {should respond_to(:remember_token)}
 
 	# verifying that @user is initially valid
 	it {should be_valid}
+	it {should_not be_admin}
+
+	# describe when the admin is set to true 
+	describe "with admin attribute set to 'true'" do
+		before do
+			@user.save!
+			#toggle the user into an admin user
+			@user.toggle!(:admin)
+		end
+		
+		#checks that the user should not be an admin
+		it {should be_admin}
+	end
 
 	# set the user's name to a blank value, then test to make sure it's not a valid name
 	describe "when name is not present" do
